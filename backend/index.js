@@ -29,10 +29,19 @@ dotenv.config({
 });
 
 const app = express();
-app.use(cors());
+app.use(
+	cors({
+		origin: ["https://dharashiv-mukhyadhyapak-sangh-api.vercel.app/"],
+		methods: ["POST", "GET"],
+		credentials: true,
+	})
+);
 app.use(express.json());
 const PORT = process.env.PORT;
 
+app.get("/", (req, res) => {
+	res.json("Hello");
+});
 app.use(express.static("public"));
 app.use("/register", registerRoute);
 app.use("/timetable", timetableRoute);
