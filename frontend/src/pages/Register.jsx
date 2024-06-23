@@ -28,6 +28,7 @@ export default function Register() {
 	const [taluka, setTaluka] = useState();
 	const [udise, setUdise] = useState();
 	const [password, setPassword] = useState();
+	const frontendUrl = import.meta.env.VITE_FRONTEND_URI;
 
 	const form = useForm({
 		initialValues: {
@@ -104,7 +105,7 @@ export default function Register() {
 					console.log(res);
 					if (res)
 						setTimeout(() => {
-							window.location.href = "http://localhost:5173";
+							window.location.href = frontendUrl;
 						}, [2000]);
 				});
 			} else {
@@ -120,7 +121,7 @@ export default function Register() {
 				).then((response) => {
 					if (response)
 						setTimeout(() => {
-							window.location.href = "http://localhost:5173";
+							window.location.href = frontendUrl;
 						}, [2000]);
 				});
 			}

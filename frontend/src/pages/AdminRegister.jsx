@@ -24,6 +24,8 @@ export default function AdminRegister() {
 	const [name, setName] = useState();
 	const [password, setPassword] = useState();
 
+	const frontendUrl = import.meta.env.VITE_FRONTEND_URI;
+
 	const form = useForm({
 		initialValues: {
 			name: "",
@@ -61,14 +63,14 @@ export default function AdminRegister() {
 					console.log(res);
 					if (res)
 						setTimeout(() => {
-							window.location.href = "http://localhost:5173";
+							window.location.href = frontendUrl;
 						}, [2000]);
 				});
 			} else {
 				adminSignupApi(name, username, password).then((res) => {
 					if (res)
 						setTimeout(() => {
-							window.location.href = "http://localhost:5173";
+							window.location.href = frontendUrl;
 						}, [2000]);
 				});
 			}
