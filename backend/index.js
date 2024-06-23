@@ -31,7 +31,7 @@ dotenv.config({
 const app = express();
 app.use(
 	cors({
-		origin: ["https://dharashivmukhyadhyapaksanghapi.vercel.app/"],
+		origin: ["https://dharashivmukhyadhyapaksanghapi.vercel.app"],
 		methods: ["POST", "GET"],
 		credentials: true,
 	})
