@@ -7,7 +7,7 @@ const Header = () => {
 	const username = localStorage.getItem("username");
 	const Udise = localStorage.getItem("udise");
 	return (
-		<Box sx={{ width: "100%", height: 60 }}>
+		<Box sx={{ width: "100%", minHeight: 60 }}>
 			<Flex
 				mih='60'
 				px='30'
