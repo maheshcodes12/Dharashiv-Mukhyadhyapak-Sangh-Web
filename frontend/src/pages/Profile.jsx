@@ -4,10 +4,21 @@ import { isLoggedInApi } from "../services/registerApi";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { notifications } from "@mantine/notifications";
+import {
+	getAdminAccountData,
+	getSchoolAccountData,
+} from "../services/getAccountData";
 
 const Profile = () => {
 	const [udise, setUdise] = useState();
 	const [username, setUsername] = useState();
+	const [name, setName] = useState();
+	const [principal, setPrincipal] = useState();
+	const [principalPhoneNo, setPrincipalPhoneNo] = useState();
+	const [parikshaPramukh, setParikshaPramukh] = useState();
+	const [parikshaPramukhPhoneNo, setParikshaPramukhPhoneNo] = useState();
+	const [taluka, setTaluka] = useState();
+
 	const a = localStorage.getItem("udise");
 	const b = localStorage.getItem("username");
 	useEffect(() => {
@@ -16,6 +27,28 @@ const Profile = () => {
 		if (!a && !b)
 			window.location.href = `${import.meta.env.VITE_FRONTEND_URI}/register`;
 	}, [udise, username]);
+
+	useEffect(() => {
+		async function getData() {
+			if (a && !b)
+				getSchoolAccountData(a).then((res) => {
+					if (res) {
+						setName(res.schoolName);
+						setTaluka(res.taluka);
+						setPrincipal(res.principalName);
+						setPrincipalPhoneNo(res.principalNo);
+						setParikshaPramukh(res.parikshaPramukhName);
+						setParikshaPramukhPhoneNo(res.parikshaPramukhNo);
+					}
+				});
+			if (b && !a) {
+				getAdminAccountData(b).then((res) => {
+					setName(res);
+				});
+			}
+		}
+		getData();
+	}, []);
 
 	function handleLogout() {
 		localStorage.removeItem("udise");
@@ -53,8 +86,25 @@ const Profile = () => {
 						direction='column'
 						wrap='nowrap'
 						style={{ height: "100%" }}>
-						{a && <div>Udise = {udise}</div>}
-						{b && <div>Username = {username}</div>}
+						{a && !b && (
+							<div>
+								<div>School Name - {name}</div>
+								<div>Taluka - {taluka}</div>
+								<div>Principal - {principal}</div>
+								<div>Principal's Phone No - {principalPhoneNo}</div>
+								<div>Pariksha Pramukh - {parikshaPramukh}</div>
+								<div>
+									Pariksha Pramukh's Phone No - {parikshaPramukhPhoneNo}
+								</div>
+								<div>Udise - {udise}</div>
+							</div>
+						)}
+						{b && !a && (
+							<div>
+								<div>Name - {name}</div>
+								<div>Username - {username}</div>
+							</div>
+						)}
 						<Link to='/'>
 							<div>Back to Home</div>
 						</Link>

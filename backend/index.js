@@ -6,6 +6,7 @@ const timetableRoute = require("./routes/timetableRoute.js");
 const paperDataRoute = require("./routes/paperDataRoute.js");
 const priceRoute = require("./routes/priceRoute.js");
 const talukaWiseDataRoute = require("./routes/talukaWiseDataRoute.js");
+const getAccountDataRoute = require("./routes/getAccountDataRoute.js");
 
 var mongoose = require("mongoose");
 
@@ -29,13 +30,14 @@ dotenv.config({
 });
 
 const app = express();
-app.use(
-	cors({
-		origin: ["https://dharashivmukhyadhyapaksangh.vercel.app"],
-		methods: ["POST", "GET"],
-		credentials: true,
-	})
-);
+app.use(cors());
+// app.use(
+// 	cors({
+// 		origin: ["https://dharashivmukhyadhyapaksangh.vercel.app"],
+// 		methods: ["POST", "GET"],
+// 		credentials: true,
+// 	})
+// );
 app.use(express.json());
 const PORT = process.env.PORT;
 
@@ -48,6 +50,7 @@ app.use("/timetable", timetableRoute);
 app.use("/paperdata", paperDataRoute);
 app.use("/price", priceRoute);
 app.use("/talukawisedata", talukaWiseDataRoute);
+app.use("/account", getAccountDataRoute);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

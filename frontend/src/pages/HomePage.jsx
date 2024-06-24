@@ -92,45 +92,89 @@ const HomePage = () => {
 					size='sm'
 					my='60'
 				/>
+				<Flex
+					gap='xl'
+					justify='center'
+					align='center'
+					direction='row'
+					wrap='wrap'>
+					<Box>
+						<Center>
+							<img
+								height='150'
+								width='150'
+								src='श्री.एम.डी.देशमुख.png'
+								alt='श्री.एम.डी.देशमुख'
+								onError={(e) => {
+									e.target.src = "profile.png";
+								}}
+							/>
+						</Center>
 
-				<Box>
-					<Center>
-						<img
-							height='150'
-							width='150'
-							src='श्री.एम.डी.देशमुख.png'
-							alt='श्री.एम.डी.देशमुख'
-							onError={(e) => {
-								e.target.src = "profile.png";
-							}}
-						/>
-					</Center>
+						<Flex
+							gap='2'
+							justify='center'
+							align='center'
+							direction='column'
+							wrap='nowrap'>
+							<Text
+								mt='8'
+								fw='bold'
+								color='green'>
+								श्री.एम.डी.देशमुख
+							</Text>
+							<Text
+								size='sm'
+								color='red'>
+								मानद अध्यक्ष
+							</Text>
+							<Text size='sm'>9422934297</Text>
+							<Text
+								size='xs'
+								color='cyan'>
+								छ.शि.हा.धराशिव (मा.मु.अ.)
+							</Text>
+						</Flex>
+					</Box>
+					<Box>
+						<Center>
+							<img
+								height='150'
+								width='150'
+								src='श्री.डी.के.कुलकर्णी.png'
+								alt='श्री.डी.के.कुलकर्णी'
+								onError={(e) => {
+									e.target.src = "profile.png";
+								}}
+							/>
+						</Center>
 
-					<Flex
-						gap='2'
-						justify='center'
-						align='center'
-						direction='column'
-						wrap='nowrap'>
-						<Text
-							mt='8'
-							fw='bold'
-							color='green'>
-							श्री.एम.डी.देशमुख
-						</Text>
-						<Text
-							size='sm'
-							color='red'>
-							मानद अध्यक्ष
-						</Text>
-						<Text size='sm'>9422934297</Text>
-						<Text
-							size='xs'
-							color='cyan'>
-							छ.शि.हा.धराशिव (मा.मु.अ.)
-						</Text>
-					</Flex>
-				</Box>
+						<Flex
+							gap='2'
+							justify='center'
+							align='center'
+							direction='column'
+							wrap='nowrap'>
+							<Text
+								mt='8'
+								fw='bold'
+								color='green'>
+								श्री.डी.के.कुलकर्णी
+							</Text>
+							<Text
+								size='sm'
+								color='red'>
+								सल्लागार
+							</Text>
+							<Text size='sm'>9422464710</Text>
+							<Text
+								size='xs'
+								color='cyan'>
+								कलंब
+							</Text>
+						</Flex>
+					</Box>
+				</Flex>
 
 				<Divider
 					color='red'
@@ -148,8 +192,8 @@ const HomePage = () => {
 					wrap='wrap'>
 					{profilesData.map(
 						(element, index) =>
-							index < 3 &&
-							index > 0 && (
+							index < 4 &&
+							index > 1 && (
 								<Profiles
 									name={element.name}
 									position={element.position}
@@ -188,7 +232,7 @@ const HomePage = () => {
 						wrap='wrap'>
 						{profilesData.map(
 							(element, index) =>
-								index > 2 && (
+								index > 3 && (
 									<Profiles
 										name={element.name}
 										position={element.position}

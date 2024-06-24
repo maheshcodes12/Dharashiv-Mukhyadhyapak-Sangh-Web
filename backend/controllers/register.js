@@ -7,7 +7,10 @@ async function login(req, res) {
 	try {
 		console.log("login");
 
-		const exist = await school.find({ udise: udise });
+		const exist = await school.find(
+			{ udise: udise },
+			{ _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+		);
 
 		if (!exist[0]) {
 			return res

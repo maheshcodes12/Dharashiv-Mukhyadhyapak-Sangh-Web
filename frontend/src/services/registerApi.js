@@ -123,13 +123,13 @@ export const adminSignupApi = async (name, username, password) => {
 				color: "green",
 				autoClose: 2000,
 			});
-			return true;
+			return;
 		} else {
 			console.log(response);
 			notifications.clean();
 			notifications.show({
 				title: "Error",
-				message: "Admin already exists with this username",
+				message: `${response.data.message}`,
 				withCloseButton: true,
 				color: "red",
 				autoClose: 2000,

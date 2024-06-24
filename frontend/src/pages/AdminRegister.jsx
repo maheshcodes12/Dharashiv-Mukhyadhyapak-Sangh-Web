@@ -75,7 +75,6 @@ export default function AdminRegister() {
 
 			if (mode === "login") {
 				adminLoginApi(username, password).then((res) => {
-					console.log(res);
 					if (res)
 						setTimeout(() => {
 							window.location.href = frontendUrl;
