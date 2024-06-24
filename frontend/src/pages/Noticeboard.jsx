@@ -1,4 +1,4 @@
-import { AppShell, Burger } from "@mantine/core";
+import { AppShell, Burger, Flex } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 import { Tabs, rem } from "@mantine/core";
@@ -7,13 +7,15 @@ import Notices from "../components/Notices";
 import Timetable from "../components/Timetable";
 import Header from "../components/Header";
 import { useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
 	const iconStyle = { width: rem(12), height: rem(12) };
 
 	useEffect(() => {
-		const isLoggedIn = localStorage.getItem("udise");
+		const isLoggedIn =
+			localStorage.getItem("udise") || localStorage.getItem("username");
 		if (!isLoggedIn) {
 			window.location.href = `${import.meta.env.VITE_FRONTEND_URI}/register`;
 		}
@@ -29,18 +31,27 @@ export default function Noticeboard() {
 			}}
 			padding='md'>
 			<AppShell.Header>
-				<Burger
-					opened={opened}
-					onClick={toggle}
-					hiddenFrom='sm'
-					size='sm'
-				/>
-				<Header></Header>
+				<Flex
+					gap='md'
+					justify='flex-start'
+					align='flex-start'
+					direction='row'
+					wrap='nowrap'>
+					<Burger
+						opened={opened}
+						onClick={toggle}
+						hiddenFrom='sm'
+						size='sm'
+						px='20'
+						py='35'
+					/>
+
+					<Header sx={{ alignSelf: "flex-start" }} />
+				</Flex>
 			</AppShell.Header>
 
 			<AppShell.Navbar p='md'>
-				<Link to='/notice'>Noticeboard</Link>
-				<Link to='/entry'>Add data</Link>
+				<Navbar />
 			</AppShell.Navbar>
 
 			<AppShell.Main>

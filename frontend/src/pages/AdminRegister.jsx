@@ -23,6 +23,21 @@ export default function AdminRegister() {
 	const [username, setUsername] = useState();
 	const [name, setName] = useState();
 	const [password, setPassword] = useState();
+	const [boxWidth, setBoxWidth] = useState("30%");
+
+	useEffect(() => {
+		// Function to handle window resize
+		const handleResize = () => {
+			if (window.innerWidth < 600) {
+				setBoxWidth("80%");
+			} else {
+				setBoxWidth("30%");
+			}
+		};
+		handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const frontendUrl = import.meta.env.VITE_FRONTEND_URI;
 
@@ -87,9 +102,9 @@ export default function AdminRegister() {
 
 	return (
 		<Box
-			w='30%'
 			mx='auto'
-			my='10%'>
+			my='10%'
+			style={{ width: boxWidth }}>
 			<Center>
 				<Text size='lg'>
 					{mode === "login" ? "Login for Admin" : "Register for Admin"}

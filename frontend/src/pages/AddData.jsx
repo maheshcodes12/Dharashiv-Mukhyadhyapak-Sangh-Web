@@ -15,6 +15,7 @@ import {
 import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
 import pdfMake from "pdfmake/build/pdfmake";
+import Navbar from "../components/Navbar";
 
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
@@ -25,6 +26,7 @@ export default function Noticeboard() {
 	const [selectedYear, setSelectedYear] = useState();
 	const [prices, setPrices] = useState();
 	const [studentsData, setStudentsData] = useState();
+	const [readyToDownload, setReadyToDownload] = useState(false);
 
 	useEffect(() => {
 		const isLoggedIn = localStorage.getItem("udise");
@@ -95,6 +97,10 @@ export default function Noticeboard() {
 			if (selectedYear && examName) {
 				const a = await getStudentsData(selectedYear, udise, examName);
 				const b = await getPriceData(selectedYear, examName);
+				console.log(a, b);
+				if (a && b) setReadyToDownload(true);
+				else setReadyToDownload(false);
+				console.log(readyToDownload);
 				if (a) {
 					setStudentsData(a);
 				} else {
@@ -234,14 +240,12 @@ export default function Noticeboard() {
 			styles: {
 				header: {
 					fontSize: 10,
-					bold: true,
 					margin: [0, 0, 0, 10],
 				},
 				tableExample: {
 					margin: [0, 5, 0, 15],
 				},
 				tableHeader: {
-					bold: true,
 					fontSize: 8,
 					color: "black",
 				},
@@ -264,18 +268,28 @@ export default function Noticeboard() {
 			}}
 			padding='md'>
 			<AppShell.Header>
-				<Burger
-					opened={opened}
-					onClick={toggle}
-					hiddenFrom='sm'
-					size='sm'
-				/>
-				<Header />
+				<Flex
+					w='100vw'
+					gap='md'
+					justify='flex-start'
+					align='flex-start'
+					direction='row'
+					wrap='nowrap'>
+					<Burger
+						opened={opened}
+						onClick={toggle}
+						hiddenFrom='sm'
+						size='sm'
+						px='20'
+						py='35'
+					/>
+
+					<Header sx={{ alignSelf: "flex-start" }} />
+				</Flex>
 			</AppShell.Header>
 
 			<AppShell.Navbar p='md'>
-				<Link to='/notice'>Noticeboard</Link>
-				<Link to='/entry'>Add data</Link>
+				<Navbar />
 			</AppShell.Navbar>
 
 			<AppShell.Main>
@@ -332,32 +346,35 @@ export default function Noticeboard() {
 								<Table.Tbody>{rows}</Table.Tbody>
 							</Table>
 						</Box>
-						<Box>Total price:{totalPrice}</Box>
+						<Box mb='20'>Total price:{totalPrice}</Box>
 						<Flex
 							gap='xl'
 							justify='center'
 							align='center'
 							direction='row'
 							wrap='wrap'>
-							<Button
-								variant='gradient'
-								my='lg'
-								mx='50%'
-								gradient={{ from: "pink", to: "red", deg: 90 }}
-								onClick={() => {
-									setSubmitted(!submitted);
-									handleSubmit();
-								}}>
-								Submit
-							</Button>
-							<Button
-								variant='gradient'
-								my='lg'
-								mx='50%'
-								gradient={{ from: "pink", to: "red", deg: 90 }}
-								onClick={handleDownloadPDF}>
-								Download PDF
-							</Button>
+							<Box>
+								<Button
+									variant='gradient'
+									my='lg'
+									gradient={{ from: "pink", to: "red", deg: 90 }}
+									onClick={() => {
+										setSubmitted(!submitted);
+										handleSubmit();
+									}}>
+									Submit
+								</Button>
+							</Box>
+							<Box>
+								<Button
+									variant='gradient'
+									disabled={!readyToDownload}
+									my='lg'
+									gradient={{ from: "pink", to: "red", deg: 90 }}
+									onClick={handleDownloadPDF}>
+									Download PDF
+								</Button>
+							</Box>
 						</Flex>
 					</>
 				)}

@@ -13,6 +13,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 import Profiles from "../components/Profiles.jsx";
 import profilesData from "../../profiles.json";
+import Navbar from "../components/Navbar.jsx";
 
 const HomePage = () => {
 	const [opened, { toggle }] = useDisclosure(false); // Initialize opened as false
@@ -28,26 +29,27 @@ const HomePage = () => {
 			}}
 			padding='md'>
 			<AppShell.Header>
-				<Burger
-					opened={opened}
-					onClick={toggle}
-					hiddenFrom='sm'
-					size='sm'
-				/>
-				<Header />
+				<Flex
+					gap='md'
+					justify='flex-start'
+					align='flex-start'
+					direction='row'
+					wrap='nowrap'>
+					<Burger
+						opened={opened}
+						onClick={toggle}
+						hiddenFrom='sm'
+						size='sm'
+						px='20'
+						py='35'
+					/>
+
+					<Header sx={{ alignSelf: "flex-start" }} />
+				</Flex>
 			</AppShell.Header>
 
 			<AppShell.Navbar p='md'>
-				<Link to='/register'>Register/Login for School</Link>
-				<Link to='/admin'>Register/Login for Admin</Link>
-				<Link to='/notice'>Noticeboard</Link>
-				<Link to='/entry'>Add data</Link>
-				{a && (
-					<>
-						<Link to='/admindata'>Schools Data</Link>
-						<Link to='/adminentry'>Edit prices or timetable</Link>
-					</>
-				)}
+				<Navbar />
 			</AppShell.Navbar>
 
 			<AppShell.Main>
@@ -180,7 +182,7 @@ const HomePage = () => {
 					wrap='nowrap'>
 					<Flex
 						gap='md'
-						justify='space-between'
+						justify='space-around'
 						align='center'
 						direction='row'
 						wrap='wrap'>

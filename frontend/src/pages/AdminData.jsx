@@ -151,7 +151,7 @@ const AdminData = () => {
 	return (
 		<>
 			{selectedSchool && (
-				<Center>
+				<Center my='30'>
 					<Button
 						onClick={() => {
 							setSelectedYear(null);
@@ -163,7 +163,7 @@ const AdminData = () => {
 				</Center>
 			)}
 			{!selectedSchool && (
-				<Center>
+				<Center my='30'>
 					<Link to='/'>
 						<Button>Back</Button>
 					</Link>

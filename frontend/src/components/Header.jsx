@@ -7,11 +7,9 @@ const Header = () => {
 	const username = localStorage.getItem("username");
 	const Udise = localStorage.getItem("udise");
 	return (
-		<Box sx={{ width: "100%", minHeight: 60 }}>
+		<Box>
 			<Flex
-				mih='60'
-				px='30'
-				justify='space-between'
+				justify='flex-start'
 				align='center'
 				padding='md'>
 				<Link
@@ -22,8 +20,10 @@ const Header = () => {
 						display: "flex",
 						alignItems: "center",
 					}}>
-					<Flex align='center'>
-						<Box mx='xl'>
+					<Flex
+						align='center'
+						justify='flex-start'>
+						<Box m='10'>
 							<img
 								height='35px'
 								width='35px'
@@ -33,7 +33,7 @@ const Header = () => {
 						</Box>
 						<Box mr='lg'>
 							<Text
-								size='xl'
+								size='md'
 								fw='700'
 								variant='gradient'
 								gradient={{ from: "red", to: "red", deg: 90 }}>
@@ -42,33 +42,38 @@ const Header = () => {
 						</Box>
 					</Flex>
 				</Link>
+				<Box
+					sx={{ selfAlign: "right" }}
+					pr='2'>
+					{(username || Udise) && (
+						<Link
+							to='/school'
+							style={{
+								textDecoration: "none",
+								color: "inherit",
+								display: "flex",
+								alignItems: "center",
+							}}>
+							{username && <Box mr='xs'>Admin</Box>}
+							{Udise && <Box mr='xs'>Udise</Box>}
 
-				<Link
-					to='/school'
-					style={{
-						textDecoration: "none",
-						color: "inherit",
-						display: "flex",
-						alignItems: "center",
-					}}>
-					{username && <Box mr='xs'>Admin</Box>}
-					{Udise && <Box mr='xs'>Udise</Box>}
-
-					<IconSchool />
-				</Link>
-				{!Udise && !username && (
-					<Link
-						to='/register'
-						style={{
-							textDecoration: "none",
-							color: "inherit",
-							display: "flex",
-							alignItems: "center",
-						}}>
-						<Box mr='xs'>Register</Box>
-						<IconSchool />
-					</Link>
-				)}
+							<IconSchool />
+						</Link>
+					)}
+					{!Udise && !username && (
+						<Link
+							to='/register'
+							style={{
+								textDecoration: "none",
+								color: "inherit",
+								display: "flex",
+								alignItems: "center",
+							}}>
+							<Box mr='xs'>Register</Box>
+							<IconSchool />
+						</Link>
+					)}
+				</Box>
 			</Flex>
 		</Box>
 	);

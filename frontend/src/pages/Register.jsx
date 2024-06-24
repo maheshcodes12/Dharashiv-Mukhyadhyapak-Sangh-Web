@@ -28,7 +28,22 @@ export default function Register() {
 	const [taluka, setTaluka] = useState();
 	const [udise, setUdise] = useState();
 	const [password, setPassword] = useState();
+	const [boxWidth, setBoxWidth] = useState("30%");
 	const frontendUrl = import.meta.env.VITE_FRONTEND_URI;
+
+	useEffect(() => {
+		// Function to handle window resize
+		const handleResize = () => {
+			if (window.innerWidth < 600) {
+				setBoxWidth("80%");
+			} else {
+				setBoxWidth("30%");
+			}
+		};
+		handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const form = useForm({
 		initialValues: {
@@ -142,9 +157,9 @@ export default function Register() {
 
 	return (
 		<Box
-			w='30%'
 			mx='auto'
-			my='10%'>
+			my='10%'
+			style={{ width: boxWidth }}>
 			<Center>
 				<Text size='lg'>{mode === "login" ? "Login" : "Register"}</Text>
 			</Center>
