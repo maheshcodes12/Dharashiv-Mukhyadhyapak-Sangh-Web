@@ -30,7 +30,7 @@ async function setTimetable(req, res) {
 	try {
 		const exist = await timetable.find({ academicYear: academicYear });
 		if (exist[0]) {
-			await timetable.update(
+			await timetable.updateOne(
 				{ academicYear: academicYear },
 				{
 					$set: {

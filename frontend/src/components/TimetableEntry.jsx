@@ -6,6 +6,7 @@ import { Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mantine/core";
 import Header from "../components/Header";
+import { notifications } from "@mantine/notifications";
 import { getTimetable, setTimetable } from "../services/timetableApi";
 
 const TimetableEntry = () => {
@@ -87,15 +88,24 @@ const TimetableEntry = () => {
 			default:
 				break;
 		}
-        
+
 		setTimetableData(newtimetableData);
 	}
 
 	function handleSubmit() {
-		if (timetableData) {
-            const newExamSchedule = [...response.examSchedule]
-			setTimetable(selectedYear,response.exams,newExamSchedule);
-		}
+		// if (timetableData) {
+		//     const newExamSchedule = [...response.examSchedule]
+		// 	setTimetable(selectedYear,response.exams,newExamSchedule);
+		// }
+		console.log("Under Development");
+		notifications.clean();
+		notifications.show({
+			title: "Under Development",
+			message: "Stay tuned",
+			withCloseButton: true,
+			color: "red",
+			autoClose: 2000,
+		});
 	}
 
 	return (

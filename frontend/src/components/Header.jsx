@@ -11,7 +11,8 @@ const Header = () => {
 			<Flex
 				justify='flex-start'
 				align='center'
-				padding='md'>
+				padding='md'
+				direction='row'>
 				<Link
 					to='/'
 					style={{
@@ -42,9 +43,7 @@ const Header = () => {
 						</Box>
 					</Flex>
 				</Link>
-				<Box
-					sx={{ selfAlign: "right" }}
-					pr='2'>
+				<Box pr='2'>
 					{(username || Udise) && (
 						<Link
 							to='/school'

@@ -11,6 +11,7 @@ import PriceEntry from "../components/PriceEntry";
 import TimetableEntry from "../components/TimetableEntry";
 
 import { getPriceData, setPriceAPI } from "../services/priceAPI";
+import Navbar from "../components/Navbar";
 
 const AdminEntry = () => {
 	const [opened, { toggle }] = useDisclosure(false);
@@ -73,8 +74,7 @@ const AdminEntry = () => {
 			</AppShell.Header>
 
 			<AppShell.Navbar p='md'>
-				<Link to='/notice'>Noticeboard</Link>
-				<Link to='/entry'>Add data</Link>
+				<Navbar />
 			</AppShell.Navbar>
 
 			<AppShell.Main>

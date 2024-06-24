@@ -16,9 +16,17 @@ const PriceEntry = () => {
 
 	useEffect(() => {
 		async function getData() {
+			const ifPriceDataNotAvailable = [
+				{ class: "5th", price: 0 },
+				{ class: "6th", price: 0 },
+				{ class: "7th", price: 0 },
+				{ class: "8th", price: 0 },
+				{ class: "9th", price: 0 },
+				{ class: "10th", price: 0 },
+			];
 			if (selectedYear && examType) {
 				const newPriceData = await getPriceData(selectedYear, examType);
-				setPriceData(newPriceData || []);
+				setPriceData(newPriceData || ifPriceDataNotAvailable);
 			}
 		}
 		getData();
