@@ -1,6 +1,6 @@
 import { AppShell, Burger, Box } from "@mantine/core";
 import "./styles.css";
-import { Table } from "@mantine/core";
+import { Table, Flex } from "@mantine/core";
 import { YearPicker } from "@mantine/dates";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
@@ -14,6 +14,10 @@ import {
 } from "../services/studentsDataApi";
 import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
 	const [examType, setExamType] = useState();
@@ -189,6 +193,69 @@ export default function Noticeboard() {
 		await setStudentsDataAPI(selectedYear, udise, examName, studentsData);
 	}
 
+	function handleDownloadPDF() {
+		// Sample 2D array data for the table
+
+		const tableData = [
+			[
+				"Class",
+				"Marathi Medium",
+				"Other Medium",
+				"Price",
+				"San Hindi",
+				"Sanskrit",
+				"Total Students",
+				"Total Price",
+			],
+			...studentsData.map((item) => [
+				item.class,
+				item.marathiMedium,
+				item.otherMedium,
+				item.price,
+				item.sanHindi,
+				item.sanskrit,
+				item.totalStudents,
+				item.totalPrice,
+			]),
+		];
+
+		// Define the document
+		const docDefinition = {
+			content: [
+				{ text: `Udise:${localStorage.getItem("udise")}`, style: "header" },
+				{ text: `Exam:${examType}`, style: "header" },
+				{ text: `Academic Year:${selectedYear}}`, style: "header" },
+				{
+					table: {
+						headerRows: 1,
+						body: tableData,
+					},
+				},
+				{ text: `TOTAL Price : ${totalPrice}`, style: "header" },
+			],
+			styles: {
+				header: {
+					fontSize: 10,
+					bold: true,
+					margin: [0, 0, 0, 10],
+				},
+				tableExample: {
+					margin: [0, 5, 0, 15],
+				},
+				tableHeader: {
+					bold: true,
+					fontSize: 8,
+					color: "black",
+				},
+			},
+		};
+
+		// Generate the PDF
+		pdfMake
+			.createPdf(docDefinition)
+			.download(`${localStorage.getItem("udise")}-${examType}-${selectedYear}`);
+	}
+
 	return (
 		<AppShell
 			header={{ height: 60 }}
@@ -268,17 +335,32 @@ export default function Noticeboard() {
 							</Table>
 						</Box>
 						<Box>Total price:{totalPrice}</Box>
-						<Button
-							variant='gradient'
-							my='lg'
-							mx='50%'
-							gradient={{ from: "pink", to: "red", deg: 90 }}
-							onClick={() => {
-								setSubmitted(!submitted);
-								handleSubmit();
-							}}>
-							Submit
-						</Button>
+						<Flex
+							gap='xl'
+							justify='center'
+							align='center'
+							direction='row'
+							wrap='wrap'>
+							<Button
+								variant='gradient'
+								my='lg'
+								mx='50%'
+								gradient={{ from: "pink", to: "red", deg: 90 }}
+								onClick={() => {
+									setSubmitted(!submitted);
+									handleSubmit();
+								}}>
+								Submit
+							</Button>
+							<Button
+								variant='gradient'
+								my='lg'
+								mx='50%'
+								gradient={{ from: "pink", to: "red", deg: 90 }}
+								onClick={handleDownloadPDF}>
+								Download PDF
+							</Button>
+						</Flex>
 					</>
 				)}
 			</AppShell.Main>

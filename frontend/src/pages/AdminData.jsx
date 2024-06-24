@@ -29,6 +29,7 @@ const AdminData = () => {
 		],
 		[]
 	);
+	console.log(SchoolsData);
 	// Row ---- Taluka
 	// School ---- School
 	//

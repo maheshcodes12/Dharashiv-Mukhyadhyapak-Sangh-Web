@@ -1,6 +1,6 @@
 import React from "react";
 import { IconSchool } from "@tabler/icons-react";
-import { Flex, Box } from "@mantine/core";
+import { Flex, Box, Center, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
 	return (
 		<Box sx={{ width: "100%", height: 60 }}>
 			<Flex
-				mt='15'
+				mih='60'
 				px='30'
 				justify='space-between'
 				align='center'
@@ -23,7 +23,7 @@ const Header = () => {
 						alignItems: "center",
 					}}>
 					<Flex align='center'>
-						<Box mr='sm'>
+						<Box mx='xl'>
 							<img
 								height='35px'
 								width='35px'
@@ -31,7 +31,15 @@ const Header = () => {
 								alt=''
 							/>
 						</Box>
-						<Box>Dharashiv Mukhysdhyapak Sangh</Box>
+						<Box mr='lg'>
+							<Text
+								size='xl'
+								fw='700'
+								variant='gradient'
+								gradient={{ from: "red", to: "red", deg: 90 }}>
+								Dharashiv Mukhyadhyapak Sangh
+							</Text>
+						</Box>
 					</Flex>
 				</Link>
 
