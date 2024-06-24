@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Profiles from "../components/Profiles.jsx";
 import profilesData from "../../profiles.json";
 import Navbar from "../components/Navbar.jsx";
+import Advisor from "../components/Advisor.jsx";
 
 const HomePage = () => {
 	const [opened, { toggle }] = useDisclosure(false); // Initialize opened as false
@@ -136,46 +137,39 @@ const HomePage = () => {
 							</Text>
 						</Flex>
 					</Box>
-					<Box>
-						<Center>
-							<img
-								height='150'
-								width='150'
-								src='श्री.डी.के.कुलकर्णी.png'
-								alt='श्री.डी.के.कुलकर्णी'
-								onError={(e) => {
-									e.target.src = "profile.png";
-								}}
-							/>
-						</Center>
-
-						<Flex
-							gap='2'
-							justify='center'
-							align='center'
-							direction='column'
-							wrap='nowrap'>
-							<Text
-								mt='8'
-								fw='bold'
-								color='green'>
-								श्री.डी.के.कुलकर्णी
-							</Text>
-							<Text
-								size='sm'
-								color='red'>
-								सल्लागार
-							</Text>
-							<Text size='sm'>9422464710</Text>
-							<Text
-								size='xs'
-								color='cyan'>
-								कलंब
-							</Text>
-						</Flex>
-					</Box>
 				</Flex>
 
+				<Divider
+					color='red'
+					size='sm'
+					my='60'
+					label={
+						<Text
+							color='blue'
+							fw='bold'>
+							सल्लागार समिति{" "}
+						</Text>
+					}
+					labelPosition='center'
+				/>
+				<Flex
+					gap='xl'
+					justify='center'
+					align='center'
+					direction='row'
+					wrap='wrap'>
+					{profilesData.map(
+						(element, index) =>
+							index > 0 &&
+							index < 6 && (
+								<Advisor
+									name={element.name}
+									phoneNo={element.phoneNo}
+									school={element.school}
+								/>
+							)
+					)}
+				</Flex>
 				<Divider
 					color='red'
 					size='sm'
@@ -192,8 +186,8 @@ const HomePage = () => {
 					wrap='wrap'>
 					{profilesData.map(
 						(element, index) =>
-							index < 4 &&
-							index > 1 && (
+							index <= 7 &&
+							index >= 6 && (
 								<Profiles
 									name={element.name}
 									position={element.position}
@@ -232,7 +226,7 @@ const HomePage = () => {
 						wrap='wrap'>
 						{profilesData.map(
 							(element, index) =>
-								index > 3 && (
+								index > 7 && (
 									<Profiles
 										name={element.name}
 										position={element.position}
