@@ -16,6 +16,16 @@ import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
 import pdfMake from "pdfmake/build/pdfmake";
 import Navbar from "../components/Navbar";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts?.pdfMake?.vfs;
+pdfMake.fonts = {
+	Roboto: {
+		normal: "Roboto-Regular.ttf",
+		bold: "Roboto-Medium.ttf",
+		italics: "Roboto-Italic.ttf",
+		bolditalics: "Roboto-MediumItalic.ttf",
+	},
+};
 
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
@@ -237,6 +247,9 @@ export default function Noticeboard() {
 				},
 				{ text: `TOTAL Price : ${totalPrice}`, style: "header" },
 			],
+			defaultStyle: {
+				font: "Roboto", 
+			},
 			styles: {
 				header: {
 					fontSize: 10,
