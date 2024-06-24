@@ -14,7 +14,7 @@ export const getStudentsData = async (academicYear, udise, examType) => {
 		});
 
 		if (response.data.success) {
-			return response.data.data.studentsData;
+			return response.data.data[0].studentsData;
 		} else {
 			notifications.clean();
 			notifications.show({
