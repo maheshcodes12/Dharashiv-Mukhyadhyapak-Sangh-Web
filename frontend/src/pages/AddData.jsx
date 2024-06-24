@@ -15,9 +15,7 @@ import {
 import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
 	const [examType, setExamType] = useState();
