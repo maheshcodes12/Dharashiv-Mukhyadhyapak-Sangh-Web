@@ -16,7 +16,7 @@ import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
 import pdfMake from "pdfmake/build/pdfmake";
 import Navbar from "../components/Navbar";
-import { pdfMake as pdfFonts } from 'pdfmake/build/vfs_fonts';
+import { pdfFonts } from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.vfs;
 
 export default function Noticeboard() {
