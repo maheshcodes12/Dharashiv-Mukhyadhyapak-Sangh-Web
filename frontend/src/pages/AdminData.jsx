@@ -99,11 +99,11 @@ const AdminData = () => {
 					<Table.Td>{element.class}</Table.Td>
 					<Table.Td>{element.marathiMedium}</Table.Td>
 					<Table.Td>{element.otherMedium}</Table.Td>
+					<Table.Td>{element.totalStudents}</Table.Td>
 					<Table.Td>{priceData[index]?.price}</Table.Td>
+					<Table.Td>{element.totalPrice}</Table.Td>
 					<Table.Td>{element.sanHindi}</Table.Td>
 					<Table.Td>{element.sanskrit}</Table.Td>
-					<Table.Td>{element.totalPrice}</Table.Td>
-					<Table.Td>{element.totalStudents}</Table.Td>
 				</Table.Tr>
 			</React.Fragment>
 		));
@@ -226,11 +226,11 @@ const AdminData = () => {
 										<Table.Th>Class</Table.Th>
 										<Table.Th>Marathi Medium</Table.Th>
 										<Table.Th>Hindi Medium</Table.Th>
+										<Table.Th>Total Students</Table.Th>
 										<Table.Th>Price</Table.Th>
+										<Table.Th>Total Price</Table.Th>
 										<Table.Th>Sanyukt Hindi</Table.Th>
 										<Table.Th>Sanskrit</Table.Th>
-										<Table.Th>Total Price</Table.Th>
-										<Table.Th>Total Students</Table.Th>
 									</Table.Tr>
 								</Table.Thead>
 								<Table.Tbody>{studentsDataElement}</Table.Tbody>

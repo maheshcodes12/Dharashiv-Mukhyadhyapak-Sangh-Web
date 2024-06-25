@@ -5,8 +5,6 @@ async function login(req, res) {
 	const { udise, password } = req.query;
 
 	try {
-		console.log("login");
-
 		const exist = await school.find(
 			{ udise: udise },
 			{ _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
@@ -41,6 +39,65 @@ async function login(req, res) {
 			.json({ success: false, message: "Problem while logging" });
 	}
 }
+async function forgetPasswordReq(req, res) {
+	const { udise } = req.query;
+
+	try {
+		const exist = await school.find(
+			{ udise: udise },
+			{ _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+		);
+
+		if (!exist[0]) {
+			return res
+				.status(200)
+				.json({ success: false, message: "User does not exist" });
+		} else {
+			return res.status(200).json({
+				success: true,
+				message: "You can proceed",
+			});
+		}
+	} catch (e) {
+		console.log(e);
+		return res
+			.status(404)
+			.json({ success: false, message: "Problem while verifying" });
+	}
+}
+async function resetPassword(req, res) {
+	const { udise, password } = req.body;
+
+	try {
+		const exist = await school.find(
+			{ udise: udise },
+			{ _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+		);
+
+		if (!exist[0]) {
+			return res
+				.status(200)
+				.json({ success: false, message: "User does not exist" });
+		} else {
+			await school.updateOne(
+				{ udise: udise },
+				{
+					$set: { password: password },
+				}
+			);
+
+			return res.status(200).json({
+				success: true,
+				message: "Password Changed Successfully",
+			});
+		}
+	} catch (e) {
+		console.log(e);
+		return res
+			.status(404)
+			.json({ success: false, message: "Problem while verifying" });
+	}
+}
 
 async function signup(req, res) {
 	const {
@@ -55,7 +112,6 @@ async function signup(req, res) {
 	} = req.body;
 
 	try {
-		console.log("signup");
 		const exist = await school.find({ udise: udise });
 		if (exist[0]) {
 			return res.status(200).json({
@@ -94,8 +150,6 @@ async function adminLogin(req, res) {
 	const { username, password } = req.query;
 
 	try {
-		console.log("login");
-
 		const exist = await admin.find({ username: username });
 
 		if (!exist[0]) {
@@ -132,7 +186,6 @@ async function adminSignup(req, res) {
 	const { name, username, password } = req.body;
 
 	try {
-		console.log("signupAd");
 		const exist = await admin.find({ username: username });
 		if (exist[0]) {
 			return res.status(200).json({
@@ -160,4 +213,11 @@ async function adminSignup(req, res) {
 			.json({ success: false, message: "Problem while signing" });
 	}
 }
-module.exports = { login, signup, adminLogin, adminSignup };
+module.exports = {
+	login,
+	signup,
+	forgetPasswordReq,
+	resetPassword,
+	adminLogin,
+	adminSignup,
+};

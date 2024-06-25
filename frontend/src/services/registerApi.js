@@ -187,3 +187,34 @@ export const adminLoginApi = async (username, password) => {
 		console.log(error);
 	}
 };
+export const forgetPasswordRequest = async (udise) => {
+	try {
+		const response = await axios.get(`${backend_url}/register/forgetpassword`, {
+			params: { udise: udise },
+		});
+		console.log(response.data.success);
+		if (response.data.success) {
+			return true;
+		}
+
+		return false;
+	} catch (error) {
+		console.log(error);
+	}
+};
+export const resetPassword = async (udise, password) => {
+	console.log(password);
+	try {
+		const response = await axios.post(`${backend_url}/register/reset`, {
+			udise: udise,
+			password: password,
+		});
+		console.log(response);
+		if (response.data.success) {
+			return true;
+		}
+		return false;
+	} catch (error) {
+		console.log(error);
+	}
+};

@@ -151,10 +151,6 @@ export default function Register() {
 		}
 	}
 
-	useEffect(() => {
-		console.log(taluka);
-	}, [taluka]);
-
 	return (
 		<Box
 			mx='auto'
@@ -284,6 +280,23 @@ export default function Register() {
 						gradient={{ from: "pink", to: "red", deg: 90 }}>
 						Submit
 					</Button>
+				</Center>
+				<Center>
+					<Box
+						mt='32'
+						size='sm'
+						w='100%'>
+						<Center>
+							<Link to='/resetpassword'>
+								<Text
+									style={{ textDecoration: "underline", cursor: "pointer" }}
+									px='8'>
+									{"   "}
+									Forget Password?
+								</Text>
+							</Link>
+						</Center>
+					</Box>
 				</Center>
 
 				<Center>

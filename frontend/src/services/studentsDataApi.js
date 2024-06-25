@@ -7,14 +7,14 @@ export const getStudentsData = async (academicYear, udise, examType) => {
 	try {
 		const response = await axios.get(`${backend_url}/paperdata/get`, {
 			params: {
-				academicYear: academicYear,
+				academicYear: academicYear.trim(),
 				udise: Number(udise),
-				examType: examType,
+				examType: examType.trim(),
 			},
 		});
-
+		console.log(response);
 		if (response.data.success) {
-			return response.data.data.studentsData;
+			return response.data.data[0].studentsData;
 		} else {
 			notifications.clean();
 			notifications.show({

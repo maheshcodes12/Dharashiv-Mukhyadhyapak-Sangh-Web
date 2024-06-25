@@ -27,12 +27,19 @@ export default function Noticeboard() {
 	const [prices, setPrices] = useState();
 	const [studentsData, setStudentsData] = useState();
 	const [readyToDownload, setReadyToDownload] = useState(false);
+	const [schoolName, setSchoolName] = useState();
 
 	useEffect(() => {
 		const isLoggedIn = localStorage.getItem("udise");
 		if (!isLoggedIn) {
 			window.location.href = `${import.meta.env.VITE_FRONTEND_URI}/register`;
 		}
+		async function getijf() {
+			const a = await getSchoolAccountData(localStorage.getItem("udise"));
+			setSchoolName(a.schoolName);
+			console.log(a);
+		}
+		getijf();
 	}, []);
 
 	function handleTableDataChange(e, change, index) {
@@ -199,6 +206,10 @@ export default function Noticeboard() {
 
 	function handleDownloadPDF() {
 		// Sample 2D array data for the table
+		const currentDate = new Date();
+		const formattedDate = `${currentDate.getDate()}/${
+			currentDate.getMonth() + 1
+		}/${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`;
 
 		const tableData = [
 			[
@@ -211,11 +222,11 @@ export default function Noticeboard() {
 				"Total Students",
 				"Total Price",
 			],
-			...studentsData.map((item) => [
+			...studentsData.map((item, index) => [
 				item.class,
 				item.marathiMedium,
 				item.otherMedium,
-				item.price,
+				prices[index].price,
 				item.sanHindi,
 				item.sanskrit,
 				item.totalStudents,
@@ -226,7 +237,8 @@ export default function Noticeboard() {
 		// Define the document
 		const docDefinition = {
 			content: [
-				{ text: `Udise:${localStorage.getItem("udise")}`, style: "header" },
+				{ text: `School Name:${schoolName}`, style: "header" },
+				{ text: `Time when downloaded:${formattedDate}`, style: "header" },
 				{ text: `Exam:${examType}`, style: "header" },
 				{ text: `Academic Year:${selectedYear}}`, style: "header" },
 				{

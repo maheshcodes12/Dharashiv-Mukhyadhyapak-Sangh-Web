@@ -14,6 +14,8 @@ import HomePage from "./pages/HomePage";
 import AdminRegister from "./pages/AdminRegister";
 import AdminData from "./pages/AdminData";
 import AdminEntry from "./pages/AdminEntry";
+import NotFound from "./pages/NotFound";
+import ResetPassword from "./pages/ResetPassword";
 
 export default function App() {
 	return (
@@ -52,6 +54,14 @@ export default function App() {
 					<Route
 						path='/adminentry'
 						element={<AdminEntry />}
+					/>
+					<Route
+						path='/resetpassword'
+						element={<ResetPassword />}
+					/>
+					<Route
+						path='/*'
+						element={<NotFound />}
 					/>
 				</Routes>
 			</Router>
