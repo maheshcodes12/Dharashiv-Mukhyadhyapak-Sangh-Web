@@ -189,7 +189,7 @@ export default function Register() {
 								"Omerga",
 								"Lohara",
 								"Kallamb",
-								"Bhum",
+								"Bhoom",
 								"Paranda",
 								"Washi",
 							]}

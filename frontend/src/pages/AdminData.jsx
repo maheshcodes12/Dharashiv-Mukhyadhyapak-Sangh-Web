@@ -25,7 +25,7 @@ const AdminData = () => {
 			"Kallamb",
 			"Bhoom",
 			"Paranda",
-			"Vashi",
+			"Washi",
 		],
 		[]
 	);
