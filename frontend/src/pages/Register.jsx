@@ -25,7 +25,7 @@ export default function Register() {
 	const [principalPhoneNo, setPrincipalPhoneNo] = useState();
 	const [parikshaPramukh, setParikshaPramukh] = useState();
 	const [parikshaPramukhPhoneNo, setParikshaPramukhPhoneNo] = useState();
-	const [taluka, setTaluka] = useState();
+	const [taluka, setTaluka] = useState("Dharashiv");
 	const [udise, setUdise] = useState();
 	const [password, setPassword] = useState();
 	const [boxWidth, setBoxWidth] = useState("30%");
@@ -179,6 +179,7 @@ export default function Register() {
 						<NativeSelect
 							label='Taluka'
 							withAsterisk
+							defaultValue='Dharashiv'
 							value={taluka}
 							onChange={(event) => {
 								setTaluka(event.currentTarget.value);
