@@ -206,13 +206,13 @@ export default function Register() {
 							required
 						/>
 						<NumberInput
-							label='Phone No.'
+							label={`Principal's Phone No.`}
 							{...form.getInputProps("phone1")}
 							onChange={(e) => {
 								setPrincipalPhoneNo(e);
 								form.setFieldValue("phone1", e);
 							}}
-							placeholder='Enter Phone No.'
+							placeholder={`Enter Principal's Phone No.`}
 							hideControls
 							withAsterisk
 							my='md'
@@ -234,7 +234,7 @@ export default function Register() {
 							required
 						/>
 						<NumberInput
-							label='Phone No.'
+							label='परीक्षा विभाग प्रमुख Phone No.'
 							{...form.getInputProps("phone2")}
 							onChange={(e) => {
 								setParikshaPramukhPhoneNo(e);

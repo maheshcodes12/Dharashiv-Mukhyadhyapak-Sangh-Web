@@ -196,6 +196,14 @@ export const forgetPasswordRequest = async (udise) => {
 		if (response.data.success) {
 			return true;
 		}
+		notifications.clean();
+		notifications.show({
+			title: "Error",
+			message: response.data.message,
+			withCloseButton: true,
+			color: "red",
+			autoClose: 2000,
+		});
 
 		return false;
 	} catch (error) {
@@ -209,10 +217,25 @@ export const resetPassword = async (udise, password) => {
 			udise: udise,
 			password: password,
 		});
-		console.log(response);
 		if (response.data.success) {
+			notifications.clean();
+			notifications.show({
+				title: "Error",
+				message: "Password reset success",
+				withCloseButton: true,
+				color: "red",
+				autoClose: 2000,
+			});
 			return true;
 		}
+		notifications.clean();
+		notifications.show({
+			title: "Error",
+			message: response.data.message,
+			withCloseButton: true,
+			color: "red",
+			autoClose: 2000,
+		});
 		return false;
 	} catch (error) {
 		console.log(error);

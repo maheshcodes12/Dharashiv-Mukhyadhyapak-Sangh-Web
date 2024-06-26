@@ -83,7 +83,7 @@ const HomePage = () => {
 							fw={900}
 							variant='gradient'
 							gradient={{ from: "red", to: "grape", deg: 90 }}>
-							धाराशिव जिल्हा मुख्यध्यापक संघ, धराशिव
+							धाराशिव जिल्हा मुख्यध्यापक संघ, धाराशिव
 						</Text>
 					</Center>
 				</Flex>
