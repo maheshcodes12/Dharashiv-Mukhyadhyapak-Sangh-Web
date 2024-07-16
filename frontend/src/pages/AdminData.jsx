@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { getStudentsData } from "../services/studentsDataApi";
 import { Table, Select, Button, Center } from "@mantine/core";
-import {
-	getStudentsDataForAdmin,
-	getTalukaWiseData,
-} from "../services/talukaWiseData";
+import { getTalukaWiseData } from "../services/talukaWiseData";
 import { Link } from "react-router-dom";
 import { getPriceData } from "../services/priceAPI";
 
@@ -29,7 +27,7 @@ const AdminData = () => {
 		],
 		[]
 	);
-	console.log(SchoolsData);
+
 	// Row ---- Taluka
 	// School ---- School
 	//
@@ -46,9 +44,9 @@ const AdminData = () => {
 	useEffect(() => {
 		async function getData() {
 			if (selectedSchool && selectedYear && examType) {
-				const data = await getStudentsDataForAdmin(
-					selectedSchool,
+				const data = await getStudentsData(
 					selectedYear,
+					selectedSchool,
 					examType?.trim()
 				);
 				const pdata = await getPriceData(selectedYear, examType?.trim());
@@ -169,6 +167,7 @@ const AdminData = () => {
 					</Link>
 				</Center>
 			)}
+
 			<div>
 				{!selectedSchool && (
 					<Table

@@ -13,7 +13,6 @@ export const getTalukaWiseData = async (taluka) => {
 		);
 
 		if (response.data.success) {
-			console.log(response.data.data);
 			return response.data.data;
 		} else {
 			notifications.clean();
@@ -31,8 +30,8 @@ export const getTalukaWiseData = async (taluka) => {
 	}
 };
 
-export const getStudentsDataForAdmin = async (
-	udise,
+export const getTalukaWiseStudentsData = async (
+	taluka,
 	academicYear,
 	examType
 ) => {
@@ -41,15 +40,15 @@ export const getStudentsDataForAdmin = async (
 			`${backend_url}/talukawisedata/getstudent`,
 			{
 				params: {
-					udise: udise,
+					taluka: taluka,
 					academicYear: academicYear,
 					examType: examType,
 				},
 			}
 		);
 
-		if (response.data.success) {
-			return response.data.data.studentsData;
+		if (response) {
+			return response.data?.data;
 		} else {
 			notifications.clean();
 			notifications.show({

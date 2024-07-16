@@ -61,6 +61,11 @@ const Navbar = () => {
 							style={linkStyle}>
 							Edit prices or timetable
 						</Link>
+						<Link
+							to='/download'
+							style={linkStyle}>
+							Download Taluka Wise Data
+						</Link>
 					</>
 				)}
 			</Flex>

@@ -163,6 +163,7 @@ const HomePage = () => {
 							index > 0 &&
 							index < 6 && (
 								<Advisor
+									key={index}
 									name={element.name}
 									phoneNo={element.phoneNo}
 									school={element.school}
@@ -189,6 +190,7 @@ const HomePage = () => {
 							index <= 7 &&
 							index >= 6 && (
 								<Profiles
+									key={index}
 									name={element.name}
 									position={element.position}
 									phoneNo={element.phoneNo}
@@ -228,6 +230,7 @@ const HomePage = () => {
 							(element, index) =>
 								index > 7 && (
 									<Profiles
+										key={index}
 										name={element.name}
 										position={element.position}
 										phoneNo={element.phoneNo}

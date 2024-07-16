@@ -16,6 +16,7 @@ import AdminData from "./pages/AdminData";
 import AdminEntry from "./pages/AdminEntry";
 import NotFound from "./pages/NotFound";
 import ResetPassword from "./pages/ResetPassword";
+import DownloadPDF from "./pages/DownloadPDF";
 
 export default function App() {
 	return (
@@ -54,6 +55,10 @@ export default function App() {
 					<Route
 						path='/adminentry'
 						element={<AdminEntry />}
+					/>
+					<Route
+						path='/download'
+						element={<DownloadPDF />}
 					/>
 					<Route
 						path='/resetpassword'

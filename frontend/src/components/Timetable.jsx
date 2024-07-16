@@ -10,8 +10,8 @@ const Timetable = () => {
 	useEffect(() => {
 		async function getData() {
 			const a = await getTimetable("2024-25").then((res) => {
-				setTimetableData(res.exams);
-				settimeTable(res.examSchedule);
+				setTimetableData(res?.exams);
+				settimeTable(res?.examSchedule);
 			});
 		}
 
