@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import {
 	NativeSelect,
-	Box,
 	Button,
 	Flex,
 	AppShell,
 	Burger,
 	Center,
-	Text,
-	Divider,
 	Select,
 } from "@mantine/core";
 import Header from "../components/Header.jsx";

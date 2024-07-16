@@ -1,6 +1,4 @@
 import {
-	AppShell,
-	Burger,
 	TextInput,
 	PasswordInput,
 	NumberInput,
@@ -9,7 +7,6 @@ import {
 	Button,
 	Center,
 	Text,
-	Group,
 	Divider,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";

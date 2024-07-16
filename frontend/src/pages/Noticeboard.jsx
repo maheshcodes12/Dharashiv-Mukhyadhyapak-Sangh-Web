@@ -1,6 +1,5 @@
 import { AppShell, Burger, Flex } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 import { Tabs, rem } from "@mantine/core";
 import { IconTable, IconInfoSquare } from "@tabler/icons-react";
 import Notices from "../components/Notices";

@@ -1,15 +1,11 @@
 import { AppShell, Burger, Box } from "@mantine/core";
 import { Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
-import { Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-import { Button } from "@mantine/core";
 import Header from "../components/Header";
-import { Tabs, rem } from "@mantine/core";
+import { Tabs } from "@mantine/core";
 import PriceEntry from "../components/PriceEntry";
 import TimetableEntry from "../components/TimetableEntry";
-
 import { getPriceData, setPriceAPI } from "../services/priceAPI";
 import Navbar from "../components/Navbar";
 

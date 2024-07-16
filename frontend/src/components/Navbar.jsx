@@ -10,8 +10,8 @@ const Navbar = () => {
 		borderBottom: "1px solid pink",
 		color: "Red",
 		paddingBottom: "1em",
-		display: "block", // Ensure the link is a block-level element for padding and border to work as expected
-		width: "100%", // Make sure the border spans the whole width
+		display: "block",
+		width: "100%",
 	};
 	return (
 		<Box>

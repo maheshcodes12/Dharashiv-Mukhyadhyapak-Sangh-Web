@@ -1,20 +1,15 @@
 import { AppShell, Burger, Box } from "@mantine/core";
-import "./styles.css";
 import { Table, Flex } from "@mantine/core";
-import { YearPicker } from "@mantine/dates";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 import { Select } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Button } from "@mantine/core";
-import YearSelector from "../components/YearSelector";
 import {
 	getStudentsData,
 	setStudentsDataAPI,
 } from "../services/studentsDataApi";
 import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
-import pdfMake from "pdfmake/build/pdfmake";
 import Navbar from "../components/Navbar";
 
 export default function Noticeboard() {

@@ -1,16 +1,10 @@
 import {
-	AppShell,
-	Burger,
-	TextInput,
 	PasswordInput,
 	NumberInput,
 	Box,
-	NativeSelect,
 	Button,
 	Center,
 	Text,
-	Group,
-	Divider,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
@@ -18,7 +12,6 @@ import { notifications } from "@mantine/notifications";
 import {
 	loginApi,
 	resetPassword,
-	signupApi,
 	forgetPasswordRequest,
 } from "../services/registerApi";
 import { Link } from "react-router-dom";

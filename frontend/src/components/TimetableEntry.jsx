@@ -1,13 +1,11 @@
-import { AppShell, Burger, Box } from "@mantine/core";
+import { Box } from "@mantine/core";
 import { Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 import { Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mantine/core";
-import Header from "../components/Header";
 import { notifications } from "@mantine/notifications";
-import { getTimetable, setTimetable } from "../services/timetableApi";
+import { getTimetable } from "../services/timetableApi";
 
 const TimetableEntry = () => {
 	const [opened, { toggle }] = useDisclosure(false);
@@ -93,10 +91,6 @@ const TimetableEntry = () => {
 	}
 
 	function handleSubmit() {
-		// if (timetableData) {
-		//     const newExamSchedule = [...response.examSchedule]
-		// 	setTimetable(selectedYear,response.exams,newExamSchedule);
-		// }
 		console.log("Under Development");
 		notifications.clean();
 		notifications.show({

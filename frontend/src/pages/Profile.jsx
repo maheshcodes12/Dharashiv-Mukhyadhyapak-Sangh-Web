@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Box, Button } from "@mantine/core";
-import { isLoggedInApi } from "../services/registerApi";
+import { Flex, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { notifications } from "@mantine/notifications";

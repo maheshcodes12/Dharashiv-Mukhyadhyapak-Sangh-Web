@@ -10,7 +10,6 @@ import {
 } from "@mantine/core";
 import Header from "../components/Header.jsx";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 import Profiles from "../components/Profiles.jsx";
 import profilesData from "../../profiles.json";
 import Navbar from "../components/Navbar.jsx";

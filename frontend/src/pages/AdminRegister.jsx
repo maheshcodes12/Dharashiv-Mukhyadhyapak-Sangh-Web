@@ -1,16 +1,10 @@
 import {
-	AppShell,
-	Burger,
 	TextInput,
 	PasswordInput,
-	NumberInput,
 	Box,
-	NativeSelect,
 	Button,
 	Center,
 	Text,
-	Group,
-	Divider,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";

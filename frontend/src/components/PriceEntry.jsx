@@ -1,11 +1,9 @@
-import { AppShell, Burger, Box } from "@mantine/core";
+import { Box } from "@mantine/core";
 import { Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 import { Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mantine/core";
-import Header from "../components/Header";
 import { getPriceData, setPriceAPI } from "../services/priceAPI";
 
 const PriceEntry = () => {
