@@ -18,6 +18,13 @@ const DownloadPDF = () => {
 	const [selectedExam, setSelectedExam] = useState();
 	const [selectedYear, setSelectedYear] = useState();
 	const [selectedTaluka, setSelectedTaluka] = useState("Dharashiv");
+	const [loading, setLoading] = useState(false);
+
+	const handleDownload = () => {
+		setLoading(true);
+		downloadPDF(selectedTaluka, selectedExam, selectedYear);
+		setLoading(false);
+	};
 
 	return (
 		<AppShell
@@ -53,73 +60,72 @@ const DownloadPDF = () => {
 			</AppShell.Navbar>
 
 			<AppShell.Main>
-				<Flex
-					gap='md'
-					justify='center'
-					align='center'
-					direction='column'
-					wrap='nowrap'>
-					<Center>
-						<Select
-							label='Select Exam Name'
-							placeholder='Select exam'
-							data={[
-								"1st Unit test",
-								"Mid-term",
-								"2nd Unit test",
-								"Final Exam (5th to 9th)",
-								"10th सराव 1",
-								"10th सराव 2 ",
-							]}
-							onChange={(value) => {
-								setSelectedExam(value);
-							}}
-							searchable
-						/>
-					</Center>
-					<Center>
-						<Select
-							label='Select Exam Year'
-							placeholder='Select Academic Year'
-							data={["2024-25", "2025-26", "2026-27", "2027-28", "2028-29"]}
-							onChange={(value) => {
-								setSelectedYear(value);
-							}}
-							searchable
-						/>
-					</Center>
-					<Center>
-						<NativeSelect
-							label='Select Taluka'
-							withAsterisk
-							value={selectedTaluka}
-							defaultValue={"Dharashiv"}
-							onChange={(event) => {
-								setSelectedTaluka(event.currentTarget.value);
-							}}
-							data={[
-								"Dharashiv",
-								"Tuljapur",
-								"Omerga",
-								"Lohara",
-								"Kallamb",
-								"Bhoom",
-								"Paranda",
-								"Washi",
-							]}
-						/>
-					</Center>
-					{selectedExam && selectedYear && selectedTaluka && (
-						<Center my='30'>
-							<Button
-								onClick={() =>
-									downloadPDF(selectedTaluka, selectedExam, selectedYear)
-								}>
-								Download
-							</Button>
+				{loading ? (
+					<>Loading...</>
+				) : (
+					<Flex
+						gap='md'
+						justify='center'
+						align='center'
+						direction='column'
+						wrap='nowrap'>
+						<Center>
+							<Select
+								label='Select Exam Name'
+								placeholder='Select exam'
+								data={[
+									"1st Unit test",
+									"Mid-term",
+									"2nd Unit test",
+									"Final Exam (5th to 9th)",
+									"10th सराव 1",
+									"10th सराव 2 ",
+								]}
+								onChange={(value) => {
+									setSelectedExam(value);
+								}}
+								searchable
+							/>
 						</Center>
-					)}
-				</Flex>
+						<Center>
+							<Select
+								label='Select Exam Year'
+								placeholder='Select Academic Year'
+								data={["2024-25", "2025-26", "2026-27", "2027-28", "2028-29"]}
+								onChange={(value) => {
+									setSelectedYear(value);
+								}}
+								searchable
+							/>
+						</Center>
+						<Center>
+							<NativeSelect
+								label='Select Taluka'
+								withAsterisk
+								value={selectedTaluka}
+								defaultValue={"Dharashiv"}
+								onChange={(event) => {
+									setSelectedTaluka(event.currentTarget.value);
+								}}
+								data={[
+									"Dharashiv",
+									"Tuljapur",
+									"Omerga",
+									"Lohara",
+									"Kallamb",
+									"Bhoom",
+									"Paranda",
+									"Washi",
+								]}
+							/>
+						</Center>
+						{selectedExam && selectedYear && selectedTaluka && (
+							<Center my='30'>
+								<Button onClick={handleDownload}>Download</Button>
+							</Center>
+						)}
+					</Flex>
+				)}
 			</AppShell.Main>
 		</AppShell>
 	);
