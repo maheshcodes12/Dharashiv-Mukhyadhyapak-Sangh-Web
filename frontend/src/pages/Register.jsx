@@ -22,7 +22,7 @@ export default function Register() {
 	const [principalPhoneNo, setPrincipalPhoneNo] = useState();
 	const [parikshaPramukh, setParikshaPramukh] = useState();
 	const [parikshaPramukhPhoneNo, setParikshaPramukhPhoneNo] = useState();
-	const [taluka, setTaluka] = useState("Dharashiv");
+	const [taluka, setTaluka] = useState("Enter Taluka");
 	const [udise, setUdise] = useState();
 	const [password, setPassword] = useState();
 	const [boxWidth, setBoxWidth] = useState("30%");
@@ -121,21 +121,31 @@ export default function Register() {
 						}, [2000]);
 				});
 			} else {
-				signupApi(
-					name,
-					principal,
-					phone1,
-					parikshaPramukh,
-					phone2,
-					taluka,
-					udise,
-					password
-				).then((response) => {
-					if (response)
-						setTimeout(() => {
-							window.location.href = frontendUrl;
-						}, [2000]);
-				});
+				if (taluka.trim() === "Enter Taluka")
+					notifications.show({
+						title: "Error",
+						message: "Please Enter Taluka",
+						withCloseButton: true,
+						color: "red",
+						autoClose: 2000,
+					});
+				else {
+					signupApi(
+						name,
+						principal,
+						phone1,
+						parikshaPramukh,
+						phone2,
+						taluka,
+						udise,
+						password
+					).then((response) => {
+						if (response)
+							setTimeout(() => {
+								window.location.href = frontendUrl;
+							}, [2000]);
+					});
+				}
 			}
 		} else {
 			notifications.show({
@@ -174,14 +184,14 @@ export default function Register() {
 							required
 						/>
 						<NativeSelect
-							label='Taluka'
+							label='Enter Taluka'
 							withAsterisk
-							defaultValue='Dharashiv'
 							value={taluka}
 							onChange={(event) => {
 								setTaluka(event.currentTarget.value);
 							}}
 							data={[
+								"Enter Taluka",
 								"Dharashiv",
 								"Tuljapur",
 								"Omerga",
