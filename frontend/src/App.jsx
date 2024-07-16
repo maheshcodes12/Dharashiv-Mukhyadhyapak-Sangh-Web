@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Noticeboard from "./pages/Noticeboard";
-import YearSelector from "./components/YearSelector";
 import Register from "./pages/Register";
 import AddData from "./pages/AddData";
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { theme } from "./theme";
-import { Button } from "@mantine/core";
 import "@mantine/notifications/styles.css";
 import Profile from "./pages/Profile";
 import HomePage from "./pages/HomePage";
