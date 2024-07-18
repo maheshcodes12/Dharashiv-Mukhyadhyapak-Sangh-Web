@@ -30,10 +30,11 @@ dotenv.config({
 });
 
 const app = express();
+const frontend_url = process.env.FRONTEND_URI;
 
 app.use(
 	cors({
-		origin: ["https://dharashivmukhyadhyapaksangh.vercel.app"],
+		origin: [frontend_url],
 		methods: ["POST", "GET"],
 		credentials: true,
 	})

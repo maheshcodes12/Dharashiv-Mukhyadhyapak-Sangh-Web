@@ -5,7 +5,7 @@ import { Select } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { getTimetable } from "../services/timetableApi";
+import { getTimetable, setTimetable } from "../services/timetableApi";
 
 const TimetableEntry = () => {
 	const [opened, { toggle }] = useDisclosure(false);
@@ -31,6 +31,62 @@ const TimetableEntry = () => {
 		}
 		getData();
 	}, [selectedYear, examType]);
+
+	function handletimetableDataChange(event, changeType, index) {
+		const newtimetableData = [...timetableData];
+		switch (changeType) {
+			case "date":
+				newtimetableData[index].date = event.target.innerText.trim();
+				break;
+			case "timeFrom":
+				newtimetableData[index].timeFrom = event.target.innerText.trim();
+				break;
+			case "timeTo":
+				newtimetableData[index].timeTo = event.target.innerText.trim();
+				break;
+			case "subject":
+				newtimetableData[index].subject = event.target.innerText.trim();
+				break;
+			case "marks":
+				newtimetableData[index].marks = Number(event.target.innerText);
+				break;
+
+			default:
+				break;
+		}
+
+		setTimetableData(newtimetableData);
+	}
+
+	// timetableData - exams
+	// timetable - examschedule -- --full schedule array
+
+	function handleSubmit() {
+		const responseRecieved = response;
+		let examsScheduleProp = [...response?.examSchedule];
+		if (selectedYear && examType) {
+			for (let i = 0; i < responseRecieved?.examSchedule.length; i++) {
+				const element = responseRecieved.examSchedule[i];
+				if (element.name.trim() === examType.trim()) {
+					examsScheduleProp?.examSchedule = timetableData;
+					break;
+				}
+			}
+			const exams = [...responseRecieved?.exams] || [];
+
+			for (let i = 0; i < exams.length; i++) {
+				if (exams[i].examName.trim() === examType.trim()) {
+					const lengthOfSchedule = examsScheduleProp.examSchedule.length;
+					exams[i].from = examsScheduleProp.examSchedule[0].date;
+					exams[i].to =
+						examsScheduleProp.examSchedule[lengthOfSchedule - 1].date;
+					break;
+				}
+			}
+			if (examsScheduleProp?.examSchedule?.length > 0 && exams.length > 0)
+				setTimetable(selectedYear.trim(), exams, examsScheduleProp);
+		}
+	}
 
 	const timetableArray = timetableData?.map((element, index) => (
 		<React.Fragment key={element.class}>
@@ -64,44 +120,6 @@ const TimetableEntry = () => {
 		</React.Fragment>
 	));
 
-	function handletimetableDataChange(event, changeType, index) {
-		const newtimetableData = [...timetableData];
-		switch (changeType) {
-			case "date":
-				newtimetableData[index].date = event.target.innerText;
-				break;
-			case "timeFrom":
-				newtimetableData[index].timeFrom = event.target.innerText;
-				break;
-			case "timeTo":
-				newtimetableData[index].timeTo = event.target.innerText;
-				break;
-			case "subject":
-				newtimetableData[index].subject = event.target.innerText;
-				break;
-			case "marks":
-				newtimetableData[index].marks = event.target.innerText;
-				break;
-
-			default:
-				break;
-		}
-
-		setTimetableData(newtimetableData);
-	}
-
-	function handleSubmit() {
-		console.log("Under Development");
-		notifications.clean();
-		notifications.show({
-			title: "Under Development",
-			message: "Stay tuned",
-			withCloseButton: true,
-			color: "red",
-			autoClose: 2000,
-		});
-	}
-
 	return (
 		<>
 			<div>
@@ -110,11 +128,15 @@ const TimetableEntry = () => {
 					placeholder='Select exam for editing prices'
 					data={[
 						"प्रथम घटक चाचणी 5वी ते 8वी ",
-						"Mid-term",
-						"2nd Unit test",
-						"Final Exam (5th to 9th)",
-						"10th सराव 1",
-						"10th सराव 2 ",
+						"प्रथम घटक चाचणी 9वी ते 10वी",
+						"प्रथम सत्र परीक्षा 5वी ते 8वी",
+						"प्रथम सत्र परीक्षा 9वी ते 10वी",
+						"पूर्व परीक्षा इयत्ता 10वी",
+						"सराव परीक्षा इयत्ता 10वी",
+						"द्वितीय घटक चाचणी 5वी ते 8वी",
+						"द्वितीय घटक चाचणी 9वी",
+						"द्वितीय सत्र परीक्षा 9वी",
+						"द्वितीय सत्र परीक्षा 5वी ते 8वी",
 					]}
 					onChange={(value) => {
 						setExamType(value);
