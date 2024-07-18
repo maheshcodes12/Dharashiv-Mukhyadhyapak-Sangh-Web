@@ -68,7 +68,7 @@ const TimetableEntry = () => {
 			for (let i = 0; i < responseRecieved?.examSchedule.length; i++) {
 				const element = responseRecieved.examSchedule[i];
 				if (element.name.trim() === examType.trim()) {
-					examsScheduleProp?.examSchedule = timetableData;
+					examsScheduleProp.examSchedule = timetableData;
 					break;
 				}
 			}
