@@ -14,10 +14,18 @@ import Profiles from "../components/Profiles.jsx";
 import profilesData from "../../profiles.json";
 import Navbar from "../components/Navbar.jsx";
 import Advisor from "../components/Advisor.jsx";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
-	const [opened, { toggle }] = useDisclosure(false); // Initialize opened as false
+	const [opened, { toggle }] = useDisclosure(false);
 	const a = localStorage.getItem("username");
+	const linkStyle = {
+		textAlign: "center",
+		textDecoration: "none",
+		color: "Red",
+		display: "block",
+		width: "100%",
+	};
 
 	return (
 		<AppShell
@@ -86,6 +94,24 @@ const HomePage = () => {
 						</Text>
 					</Center>
 				</Flex>
+				<Divider
+					color='red'
+					size='sm'
+					my='60'
+				/>
+				<Center>
+					<Link
+						to='/notice'
+						style={linkStyle}>
+						<Text
+							size='lg'
+							color='red'
+							sx={{ textDecoration: "none" }}>
+							Class 10th Previous year papers are now ready to download. Click
+							Here!
+						</Text>
+					</Link>
+				</Center>
 
 				<Divider
 					color='red'
