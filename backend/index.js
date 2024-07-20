@@ -34,7 +34,7 @@ const frontend_url = process.env.FRONTEND_URI;
 
 app.use(
 	cors({
-		origin: [frontend_url],
+		origin: ["https://dharashivmukhyadhyapaksangh.vercel.app"],
 		methods: ["POST", "GET"],
 		credentials: true,
 	})
