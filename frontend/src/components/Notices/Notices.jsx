@@ -60,7 +60,7 @@ const Notices = () => {
 				lineWidth={1}
 				bulletSize={18}>
 				{adminLogin && (
-					<Timeline.Item title={`21/7/2024`}>
+					<Timeline.Item title={`${formattedDate}`}>
 						<div>
 							<Textarea
 								label='Add New Notice Title'
