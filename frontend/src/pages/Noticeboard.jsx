@@ -2,7 +2,7 @@ import { AppShell, Burger, Flex } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Tabs, rem } from "@mantine/core";
 import { IconTable, IconInfoSquare } from "@tabler/icons-react";
-import Notices from "../components/Notices";
+import Notices from "../components/Notices/Notices";
 import Timetable from "../components/Timetable";
 import Header from "../components/Header";
 import { useEffect } from "react";

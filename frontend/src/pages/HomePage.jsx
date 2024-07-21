@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
 	const [opened, { toggle }] = useDisclosure(false);
-	const a = localStorage.getItem("username");
 	const linkStyle = {
 		textAlign: "center",
 		textDecoration: "none",

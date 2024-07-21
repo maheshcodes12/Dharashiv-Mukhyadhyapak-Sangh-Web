@@ -7,6 +7,7 @@ const paperDataRoute = require("./routes/paperDataRoute.js");
 const priceRoute = require("./routes/priceRoute.js");
 const talukaWiseDataRoute = require("./routes/talukaWiseDataRoute.js");
 const getAccountDataRoute = require("./routes/getAccountDataRoute.js");
+const noticesRoute = require("./routes/noticesRoute.js");
 
 var mongoose = require("mongoose");
 
@@ -52,6 +53,7 @@ app.use("/paperdata", paperDataRoute);
 app.use("/price", priceRoute);
 app.use("/talukawisedata", talukaWiseDataRoute);
 app.use("/account", getAccountDataRoute);
+app.use("/notice", noticesRoute);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
