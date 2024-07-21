@@ -23,7 +23,7 @@ async function setNotice(req, res) {
 }
 async function getNotice(req, res) {
 	try {
-		const notices = await notice.find({}).sort({ time: -1 }).exec();
+		const notices = await notice.find({}).sort({ createdAt: -1 }).exec();
 
 		return res.status(200).json({
 			success: true,
