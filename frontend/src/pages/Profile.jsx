@@ -3,6 +3,7 @@ import { Flex, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { notifications } from "@mantine/notifications";
+import { useNavigate } from "react-router-dom";
 import {
 	getAdminAccountData,
 	getSchoolAccountData,
@@ -17,14 +18,14 @@ const Profile = () => {
 	const [parikshaPramukh, setParikshaPramukh] = useState();
 	const [parikshaPramukhPhoneNo, setParikshaPramukhPhoneNo] = useState();
 	const [taluka, setTaluka] = useState();
+	const navigate = useNavigate();
 
 	const a = localStorage.getItem("udise");
 	const b = localStorage.getItem("username");
 	useEffect(() => {
 		setUdise(Number(a));
 		setUsername(b);
-		if (!a && !b)
-			window.location.href = `${import.meta.env.VITE_FRONTEND_URI}/register`;
+		if (!a && !b) navigate("/register");
 	}, [udise, username]);
 
 	useEffect(() => {

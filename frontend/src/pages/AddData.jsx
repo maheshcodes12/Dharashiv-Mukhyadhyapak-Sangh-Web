@@ -11,6 +11,7 @@ import {
 import { getPriceData } from "../services/priceAPI";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
@@ -23,11 +24,12 @@ export default function Noticeboard() {
 	const [studentsData, setStudentsData] = useState();
 	const [readyToDownload, setReadyToDownload] = useState(false);
 	const [schoolName, setSchoolName] = useState();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const isLoggedIn = localStorage.getItem("udise");
 		if (!isLoggedIn) {
-			window.location.href = `${import.meta.env.VITE_FRONTEND_URI}/register`;
+			navigate("/");
 		}
 		async function getijf() {
 			const a = await getSchoolAccountData(localStorage.getItem("udise"));

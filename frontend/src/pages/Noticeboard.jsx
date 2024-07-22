@@ -6,17 +6,19 @@ import Notices from "../components/Notices/Notices";
 import Timetable from "../components/Timetable";
 import Header from "../components/Header";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 export default function Noticeboard() {
 	const [opened, { toggle }] = useDisclosure();
 	const iconStyle = { width: rem(12), height: rem(12) };
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const isLoggedIn =
 			localStorage.getItem("udise") || localStorage.getItem("username");
 		if (!isLoggedIn) {
-			window.location.href = `${import.meta.env.VITE_FRONTEND_URI}/register`;
+			navigate("/register");
 		}
 	}, []);
 

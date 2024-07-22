@@ -14,13 +14,14 @@ import {
 	resetPassword,
 	forgetPasswordRequest,
 } from "../services/registerApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
 	const [password, setPassword] = useState();
 	const [mode, setMode] = useState("validate");
 	const [udise, setUdise] = useState();
 	const [boxWidth, setBoxWidth] = useState("30%");
+	const navigate = useNavigate();
 	const frontendUrl = import.meta.env.VITE_FRONTEND_URI;
 
 	useEffect(() => {
@@ -77,7 +78,7 @@ const ResetPassword = () => {
 					await loginApi(udise, password).then((res) => {
 						if (res)
 							setTimeout(() => {
-								window.location.href = frontendUrl;
+								navigate("/");
 							}, [2000]);
 					});
 			}

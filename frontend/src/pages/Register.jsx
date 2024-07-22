@@ -13,7 +13,7 @@ import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
 import { loginApi, signupApi } from "../services/registerApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
 	const [mode, setMode] = useState("login");
@@ -27,6 +27,7 @@ export default function Register() {
 	const [password, setPassword] = useState();
 	const [boxWidth, setBoxWidth] = useState("30%");
 	const frontendUrl = import.meta.env.VITE_FRONTEND_URI;
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		// Function to handle window resize
@@ -117,7 +118,7 @@ export default function Register() {
 					console.log(res);
 					if (res)
 						setTimeout(() => {
-							window.location.href = frontendUrl;
+							navigate("/");
 						}, [2000]);
 				});
 			} else {
@@ -142,7 +143,7 @@ export default function Register() {
 					).then((response) => {
 						if (response)
 							setTimeout(() => {
-								window.location.href = frontendUrl;
+								navigate("/");
 							}, [2000]);
 					});
 				}

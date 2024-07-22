@@ -10,7 +10,7 @@ import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
 import { adminLoginApi, adminSignupApi } from "../services/registerApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function AdminRegister() {
 	const [mode, setMode] = useState("login");
@@ -18,6 +18,7 @@ export default function AdminRegister() {
 	const [name, setName] = useState();
 	const [password, setPassword] = useState();
 	const [boxWidth, setBoxWidth] = useState("30%");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		// Function to handle window resize
@@ -71,14 +72,14 @@ export default function AdminRegister() {
 				adminLoginApi(username, password).then((res) => {
 					if (res)
 						setTimeout(() => {
-							window.location.href = frontendUrl;
+							navigate("/");
 						}, [2000]);
 				});
 			} else {
 				adminSignupApi(name, username, password).then((res) => {
 					if (res)
 						setTimeout(() => {
-							window.location.href = frontendUrl;
+							navigate("/");
 						}, [2000]);
 				});
 			}
