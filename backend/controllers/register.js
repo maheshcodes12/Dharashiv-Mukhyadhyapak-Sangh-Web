@@ -2,7 +2,7 @@ const school = require("../models/userModel.js");
 const admin = require("../models/admin.js");
 
 async function login(req, res) {
-	const { udise, password } = req.query;
+	const { udise, password } = req.body;
 
 	try {
 		const exist = await school.find(
@@ -147,7 +147,7 @@ async function signup(req, res) {
 }
 
 async function adminLogin(req, res) {
-	const { username, password } = req.query;
+	const { username, password } = req.body;
 
 	try {
 		const exist = await admin.find({ username: username });

@@ -61,11 +61,9 @@ export const signupApi = async (
 
 export const loginApi = async (udise, password) => {
 	try {
-		const response = await axios.get(`${backend_url}/register/login`, {
-			params: {
-				udise: udise,
-				password: password,
-			},
+		const response = await axios.post(`${backend_url}/register/login`, {
+			udise: udise,
+			password: password,
 		});
 
 		if (response.data.success) {
@@ -143,11 +141,9 @@ export const adminSignupApi = async (name, username, password) => {
 
 export const adminLoginApi = async (username, password) => {
 	try {
-		const response = await axios.get(`${backend_url}/register/adminlogin`, {
-			params: {
-				username: username,
-				password: password,
-			},
+		const response = await axios.post(`${backend_url}/register/adminlogin`, {
+			username: username,
+			password: password,
 		});
 
 		if (response.data.success) {
